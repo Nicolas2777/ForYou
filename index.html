@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>შენთვის</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="background">
+        <div class="pink-layer"></div>
+        <div class="blue-layer" id="blue-layer"></div>
+    </div>   
+    
+    <h1 id="main-text">გავისეირნოთ?</h1>
+    <div class="buttons">
+        <button class="btn1" id="love-btn">კი</button>
+        <button class="btn2" id="no-love-btn">არა</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        var noLoveBtn = document.getElementById('no-love-btn');
+        var loveBtn = document.getElementById('love-btn');
+        var clickCount = 0;
+
+        function handleClick() {
+            clickCount++;
+            switch(clickCount) {
+                case 1:
+                    noLoveBtn.textContent = "დარწმუნებული ხარ?";
+                    break;
+                case 2:
+                    noLoveBtn.textContent = "არ დააჭირო რა :-|";
+                    break;
+                case 3:
+                    noLoveBtn.textContent = "გულს ნუ მტკენ :’-( ";
+                    break;
+                case 4:
+                    noLoveBtn.textContent = "გადახედე სხვა არჩევანს(";
+                    break;
+                case 5: 
+                    noLoveBtn.textContent = "კიდევ ერთხელ დაფიქრდი((";
+                    break;
+                case 6:
+                    noLoveBtn.textContent = "არჩევანს არ დაგიტოვებ :)";
+                    
+                    // Remove event listener after last click
+                    noLoveBtn.removeEventListener('click', handleClick);
+                    break;
+                default:
+                    noLoveBtn.textContent = "არა";
+                    clickCount = 0; // Reset count
+            }
+
+            // Increase the size of .btn1
+            var computedStyle = window.getComputedStyle(loveBtn);
+            var fontSize = parseInt(computedStyle.getPropertyValue('font-size'));
+            loveBtn.style.fontSize = (fontSize + 18) + 'px';
+        }
+
+        noLoveBtn.addEventListener('click', handleClick);
+
+        loveBtn.addEventListener('click', function() {
+            document.getElementById('main-text').textContent = 'გაემზადე ხვალისთვის♥';
+        });
+    </script>
+
+</body>
+</html>
